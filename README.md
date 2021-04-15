@@ -1,5 +1,5 @@
-# EcoSummary
+# Ecommerce Summary
 
-# Order list for a Ecommerce Summary ()
+# Order list
 
 ![](image/EcoSummary.PNG)
