@@ -10,7 +10,7 @@ import entities.enums.OrderStatus;
 public class Order {
 	
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-	
+	private static SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
 	private Date moment;
 	private OrderStatus status;
 	
@@ -75,14 +75,14 @@ public class Order {
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append("ORDER SUMMARY: " + "\n");
-		sb.append("Order moment: " + sdf.format(moment));
-		sb.append("Order status: "  + status);
-		sb.append("Client: "+ getClient().getName() + " " + "("+ getClient().getBirthDate()+")" + " - " + getClient().getEmail());
+		sb.append("Order moment: " + sdf.format(moment) + "\n");
+		sb.append("Order status: "  + status + "\n");
+		sb.append("Client: "+ getClient().getName() + " " + "("+ sdf2.format(getClient().getBirthDate())+")" + " - " + getClient().getEmail() + "\n");
 		sb.append("Order items: " + "\n");
 		for(OrderItem o : orderitem) {
-			sb.append(o.getProduct().getName() + ", " +  o.getProduct().getPrice() + ", " + "Quantity: " + o.getQuantity()+", "+ "Subtotal: "+ o.subtotal());	
+			sb.append(o.getProduct().getName() + ", $" + String.format("%.2f",  o.getProduct().getPrice()) + ", " + "Quantity: " + o.getQuantity()+", "+ "Subtotal: $"+ String.format("%.2f", o.subtotal()) + "\n");	
 		}
-		sb.append(total());
+		sb.append("Total price: $" + String.format("%.2f", total()));
 
 		
 		return sb.toString();
